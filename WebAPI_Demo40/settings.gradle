@@ -1,0 +1,2 @@
+rootProject.name='WebAPI_Demo40'
+include ':app'

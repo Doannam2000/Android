@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/menu_trangChu" />
+        <item
+            android:id="@+id/nav_sanPham"
+            android:title="@string/menu_sanPham" />
+        <item
+            android:id="@+id/nav_duAn"
+            android:title="@string/menu_duAn" />
+        <item
+            android:id="@+id/nav_tinTuc"
+            android:title="@string/menu_tinTuc" />
+        <item
+            android:id="@+id/nav_khuyenMai"
+            android:title="@string/menu_khuyenMai" />
+        <item
+            android:id="@+id/nav_lienHe"
+            android:title="@string/menu_lienHe" />
+        <item
+            android:id="@+id/nav_tuyenDung"
+            android:title="@string/menu_tuyenDung" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="@string/menu_PTthanhToan" />
+    </group>
+</menu>

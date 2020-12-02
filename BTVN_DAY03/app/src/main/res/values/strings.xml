@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name" translatable="false">D40_NguyenAnhLinh_DAY03</string>
+    ---------------------EX_ONE--------------------------
+    <string name="EditText_firsName" translatable="false">First Name:</string>
+    <string name="EditText_lastName" translatable="false">Last Name:</string>
+    <string name="RadioButton_visitType" translatable="false">Visit Type:</string>
+    <string name="button_contineu" translatable="false">CONTINEU</string>
+    <string name="button_cancel" translatable="false">CANCEL</string>
+    <string name="button_Material" translatable="false">Material Light</string>
+
+    ----------------------EX_TWO-----------------------
+    <string name="EditText_FullName" translatable="false">Full Name</string>
+    <string name="EditText_PhoneNumber" translatable="false">Phone NumBer </string>
+    <string name="EditText_Gmail" translatable="false">E-mail Address</string>
+    <string name="EditText_Iam" translatable="false">I am</string>
+    <string name="RadioButton_Farmer" translatable="false">Farmer</string>
+    <string name="RadioButton_Teacher_Professor" translatable="false">Teacher / Professor</string>
+    <string name="RadioButton_Student" translatable="false">Student</string>
+    <string name="RadioButton_Dealer_Distributor" translatable="false">Dealer / Distributor</string>
+    <string name="Buttom_SingUp" translatable="false">Sing Up, It is Free</string>
+    <string name="Buttom_SingUpTop" translatable="false">Sing Up</string>
+
+    ---------------------EX_THREE-----------------------
+    <string name="Text_Tomorrow" translatable="false">Tomorrow</string>
+
+
+    ---------------------EX_FOUR------------------------
+    <string name="TextView_Tomorrow" translatable="false">Tomorrow</string>
+    <string name="TextView_Meeting" translatable="false">1 other  event tomorrow after 07:00</string>
+    <string name="TextView_Rain" translatable="false">Breezy starting in the afternoon and drizzle starting in the afternoon , continuing until evening.</string>
+    <string name="TextView_moon" translatable="false">At 07:30</string>
+    <string name="TextView_clear" translatable="false">Clear</string>
+
+    ---------------------EX_FIVE-----------------------
+    <string name="TextView_Saturday" translatable="false">Saturday</string>
+    <string name="TextView_Weekends" translatable="false">Weekends SAT, SUN</string>
+    <string name="TextView_inday" translatable="false">In 3 days</string>
+    <string name="TextView_ClearDay" translatable="false">Clear throught the day</string>
+
+</resources>

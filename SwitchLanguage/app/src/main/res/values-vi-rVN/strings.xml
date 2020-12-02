@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Đổi Ngôn Ngữ</string>
+    <string name="text_ThongTin">Thông Tin</string>
+    <string name="hint_Hoten">Họ Tên</string>
+    <string name="hint_SDT">Số Điện Thoại</string>
+    <string name="hint_email">Email</string>
+    <string name="text_Confirm">Xác Nhận</string>
+    <string name="text_Hello">Xin Chào</string>
+    <string name="text_Email">Email</string>
+    <string name="text_SDT">Số Điện Thoại</string>
+</resources>

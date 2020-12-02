@@ -1,0 +1,2 @@
+rootProject.name='BTL_Android_D40'
+include ':app'

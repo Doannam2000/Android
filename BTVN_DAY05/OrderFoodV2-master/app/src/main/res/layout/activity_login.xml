@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp"
+    android:background="@drawable/bgr"
+    android:alpha="0.8"
+    tools:context=".Login">
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="@dimen/_40sdp"-->
+<!--        android:text="Order Food"-->
+<!--        android:textColor="#67E1F1"-->
+<!--        android:textSize="@dimen/_40sdp">-->
+<!--    </TextView>-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="180dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center"
+        android:layout_height="180dp">
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+    <EditText
+        android:alpha="1.5"
+        android:id="@+id/edtUsrename"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@drawable/borderedt"
+        android:hint="Username"
+        android:textColorHint="#FFEB66"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textColor="#FFEB66">
+
+    </EditText>
+
+    <EditText
+        android:alpha="1.5"
+        android:inputType="textPassword"
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@drawable/borderedt"
+        android:hint="Password"
+        android:textColorHint="#FFEB66"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textColor="#FFEB66">
+
+    </EditText>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textColor="#00A5FF"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Save password"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp">
+
+    </CheckBox>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/borderbtn"
+        android:text="Login">
+
+    </Button>
+
+
+</LinearLayout>

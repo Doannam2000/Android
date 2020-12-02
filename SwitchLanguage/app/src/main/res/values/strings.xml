@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SwitchLanguage</string>
+    <string name="text_ThongTin">Information</string>
+    <string name="hint_Hoten">Full Name</string>
+    <string name="hint_SDT">Phone Number</string>
+    <string name="hint_email">Email</string>
+    <string name="text_Confirm">Confirm</string>
+    <string name="text_Hello">Hello</string>
+    <string name="text_Email">Email</string>
+    <string name="text_SDT">Phone Number</string>
+</resources>

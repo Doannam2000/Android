@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroud03"
+    android:alpha="0.8"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="italic"
+        android:layout_marginTop="40dp"
+        android:text="Order Food"
+        android:textColor="#DF0922"
+        android:textSize="40dp">
+    </TextView>
+
+    <EditText
+        android:id="@+id/edtUsrename"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/borderedt"
+        android:hint="Username"
+        android:textColorHint="#0BE46D"
+        android:paddingLeft="10dp"
+        android:textColor="#000">
+
+    </EditText>
+
+    <EditText
+        android:textColorHint="#0BE46D"
+        android:inputType="textPassword"
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/borderedt"
+        android:hint="Password"
+        android:paddingLeft="12dp"
+        android:textColor="#000">
+
+    </EditText>
+
+<!--    <CheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="@dimen/_10sdp"-->
+<!--        android:background="#FFFFFF"-->
+<!--        android:text="Save password"-->
+<!--        android:textSize="@dimen/_18sdp">-->
+
+<!--    </CheckBox>-->
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/borderbtn"
+        android:text="Login">
+
+    </Button>
+
+
+</LinearLayout>

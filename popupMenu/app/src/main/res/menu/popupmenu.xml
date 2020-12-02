@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Cái Đầu TIên"
+        android:id="@+id/first"/>
+    <item android:title="Cái Thứ Hai"
+        android:id="@+id/second"/>
+    <item android:title="Cái thứ Ba"
+        android:id="@+id/third"/>
+</menu>

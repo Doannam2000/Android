@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_trangChu">Trang Chủ</string>
+    <string name="menu_sanPham">Sản Phẩm</string>
+    <string name="menu_gioiThieu">Giới Thiệu</string>
+    <string name="menu_duAn">Dự Án</string>
+    <string name="menu_tinTuc">Tin Tức</string>
+    <string name="menu_khuyenMai">Khuyến Mãi</string>
+    <string name="menu_lienHe">Liên Hệ</string>
+    <string name="menu_tuyenDung">Tuyển Dụng</string>
+    <string name="menu_PTthanhToan">PT Thanh Toán</string>
+
+    <string name="home_second">Home Second</string>
+</resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bc"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textSize="50sp"
+        android:id="@+id/diem"
+        android:textColor="#FF0000"/>
+
+    <CheckBox
+        android:id="@+id/Cb3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="16dp" />
+
+    <CheckBox
+        android:id="@+id/Cb2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Cb3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="46dp" />
+
+    <CheckBox
+        android:id="@+id/Cb1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Cb2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="49dp" />
+
+    <SeekBar
+        android:layout_width="666dp"
+        android:progressDrawable="@android:color/transparent"
+        android:layout_height="78dp"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="30dp"
+        android:id="@+id/Seekbar3"
+        android:layout_toRightOf="@+id/Cb3"
+        android:thumb="@drawable/naruto1" />
+
+    <SeekBar
+        android:id="@+id/Seekbar2"
+        android:layout_width="666dp"
+        android:progressDrawable="@android:color/transparent"
+        android:layout_height="78dp"
+        android:layout_above="@+id/Seekbar3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginBottom="79dp"
+        android:layout_toRightOf="@+id/Cb3"
+        android:paddingLeft="30dp"
+        android:thumb="@drawable/luffy1" />
+
+    <SeekBar
+        android:id="@+id/Seekbar1"
+        android:layout_width="666dp"
+        android:layout_height="78dp"
+        android:layout_above="@+id/Seekbar3"
+        android:progressDrawable="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="152dp"
+        android:layout_toRightOf="@+id/Cb2"
+        android:paddingLeft="30dp"
+        android:thumb="@drawable/sng"/>
+
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="350dp"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/logo" />
+
+    <ImageButton
+        android:layout_width="176dp"
+        android:layout_height="177dp"
+        android:background="@null"
+        android:src="@drawable/play"
+        android:id="@+id/btnplay"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="214dp"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:id="@+id/imgview"
+        android:src="@drawable/pause" />
+</RelativeLayout>
