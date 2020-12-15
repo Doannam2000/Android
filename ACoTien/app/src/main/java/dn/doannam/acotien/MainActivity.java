@@ -2,7 +2,9 @@ package dn.doannam.acotien;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.ContentLoadingProgressBar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -88,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Login(final String user, final String passw) {
+        final ProgressDialog loading = new ProgressDialog(MainActivity.this);
+        loading.show();
+        loading.setContentView(R.layout.process);
+        loading.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         String url = "http://acotien.com/system/login";
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -97,26 +104,33 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     if(jsonObject.getString("status")=="true")
                     {
-                        Toast.makeText(MainActivity.this,jsonObject.getString("msg"),Toast.LENGTH_LONG).show();
                         Thread.sleep(3000);
                         Intent intent = new Intent(MainActivity.this,Cookie.class);
                         intent.putExtra(USER,user);
+                        loading.dismiss();
+                        Toast.makeText(MainActivity.this,jsonObject.getString("msg"),Toast.LENGTH_LONG).show();
                         startActivity(intent);
                     }
                     else
                     {
+                        loading.dismiss();
                         Toast.makeText(MainActivity.this,jsonObject.getString("msg"),Toast.LENGTH_LONG).show();
                     }
-                } catch (JSONException e) {
+                } catch (JSONException e)
+                {
+                    loading.dismiss();
                     e.printStackTrace();
                 } catch (InterruptedException e) {
+                    loading.dismiss();
                     e.printStackTrace();
                 }
             }
         },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        loading.dismiss();
                         Toast.makeText(MainActivity.this,"Không được rồi",Toast.LENGTH_LONG).show();
                     }
                 }) {

@@ -3,6 +3,7 @@ package dn.doannam.acotien;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class Cookie extends AppCompatActivity {
         OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(Cookie.this,Guide.class);
+                Intent intent1 = new Intent(Cookie.this,NickFB.class);
                 startActivity(intent1);
             }
         });

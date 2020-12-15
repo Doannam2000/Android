@@ -1,8 +1,9 @@
 package dn.doannam.acotien;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -13,6 +14,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 public class Guide extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
     private YouTubePlayerView youTubePlayerView;
+
     private  final  String ApiYtb = "AIzaSyAS5k2gGKsBunTdDzS26f_5421zXHY_Tws";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
