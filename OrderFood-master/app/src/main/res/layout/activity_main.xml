@@ -20,6 +20,17 @@
         android:textSize="40dp">
     </TextView>
 
+    <!--    <CheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="@dimen/_10sdp"-->
+<!--        android:background="#FFFFFF"-->
+<!--        android:text="Save password"-->
+<!--        android:textSize="@dimen/_18sdp">-->
+
+<!--    </CheckBox>-->
+
     <EditText
         android:id="@+id/edtUsrename"
         android:layout_width="match_parent"
@@ -30,15 +41,13 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/borderedt"
         android:hint="Username"
-        android:textColorHint="#0BE46D"
         android:paddingLeft="10dp"
-        android:textColor="#000">
+        android:textColor="#000"
+        android:textColorHint="#0BE46D">
 
     </EditText>
 
     <EditText
-        android:textColorHint="#0BE46D"
-        android:inputType="textPassword"
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -48,21 +57,12 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/borderedt"
         android:hint="Password"
+        android:inputType="textPassword"
         android:paddingLeft="12dp"
-        android:textColor="#000">
+        android:textColor="#000"
+        android:textColorHint="#0BE46D">
 
     </EditText>
-
-<!--    <CheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="@dimen/_10sdp"-->
-<!--        android:background="#FFFFFF"-->
-<!--        android:text="Save password"-->
-<!--        android:textSize="@dimen/_18sdp">-->
-
-<!--    </CheckBox>-->
 
     <Button
         android:id="@+id/btnLogin"
