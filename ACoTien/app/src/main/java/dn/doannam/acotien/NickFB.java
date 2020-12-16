@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,17 +23,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NickFB extends AppCompatActivity {
 
-
+    final public static List<String> datnick = new ArrayList<>();
+    final public static List<String> id = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nick_f_b);
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -43,7 +48,6 @@ public class NickFB extends AppCompatActivity {
         loading.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         final Intent intent = getIntent();
         final String Cookie = intent.getStringExtra(dn.doannam.acotien.Cookie.COOKIE);
-        System.out.println(Cookie);
         String Url = "http://acotien.com/them-nick";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
             @Override
@@ -51,8 +55,26 @@ public class NickFB extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                 } catch (JSONException e) {
-                    System.out.println(response);
-                    Toast.makeText(NickFB.this,response,Toast.LENGTH_LONG).show();
+                    String hi = "datnick\\([0-9]{5,}";
+                    String nick =  "[0-9]{5,}";
+                    Pattern pattern = Pattern.compile(hi);
+                    Matcher matcher;
+                    matcher = pattern.matcher(response);
+                    while (matcher.find())
+                    {
+                        datnick.add(response.substring(matcher.start(),matcher.end()));
+                    }
+                    pattern = Pattern.compile(nick);
+                    for(int i =0;i<datnick.size();i++)
+                    {
+                        matcher = pattern.matcher(datnick.get(i));
+                        if (matcher.find())
+                            id.add(datnick.get(i).substring(matcher.start(),matcher.end()));
+                    }
+                    for(int i =0;i<id.size();i++)
+                    {
+                        System.out.println(id.get(i));
+                    }
                 }
             }
         }, new Response.ErrorListener() {
@@ -79,4 +101,5 @@ public class NickFB extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(NickFB.this);
         requestQueue.add(stringRequest);
     }
+
 }
