@@ -3,8 +3,11 @@ package dn.doannam.acotien;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -20,6 +23,7 @@ public class Guide extends YouTubeBaseActivity implements YouTubePlayer.OnInitia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         youTubePlayerView = (YouTubePlayerView)findViewById(R.id.ytb);
         youTubePlayerView.initialize(ApiYtb,this);
     }

@@ -16,6 +16,7 @@ public class Cookie extends AppCompatActivity {
 
     Button OK,guide;
     EditText cookie;
+    final public static String COOKIE="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class Cookie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Cookie.this,NickFB.class);
+                intent1.putExtra(COOKIE,cookie.getText().toString());
                 startActivity(intent1);
             }
         });
