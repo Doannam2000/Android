@@ -2,13 +2,17 @@ package dn.doannam.acotien;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,6 +38,10 @@ public class NickFB extends AppCompatActivity {
 
     final public static List<String> datnick = new ArrayList<>();
     final public static List<String> id = new ArrayList<>();
+    final public static List<String> Name = new ArrayList<>();
+    final public static List<InforNick> Nick = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private FBAdapter fbAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +49,6 @@ public class NickFB extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         final ProgressDialog loading = new ProgressDialog(NickFB.this);
         loading.show();
         loading.setContentView(R.layout.process);
@@ -55,6 +62,7 @@ public class NickFB extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                 } catch (JSONException e) {
+                    //ID Nick
                     String hi = "datnick\\([0-9]{5,}";
                     String nick =  "[0-9]{5,}";
                     Pattern pattern = Pattern.compile(hi);
@@ -71,10 +79,26 @@ public class NickFB extends AppCompatActivity {
                         if (matcher.find())
                             id.add(datnick.get(i).substring(matcher.start(),matcher.end()));
                     }
-                    for(int i =0;i<id.size();i++)
+                    // Image
+                    String Nam = "b200 font-bold mb-1 font-16\">.*?.<";
+                    pattern = Pattern.compile(Nam);
+                    matcher = pattern.matcher(response);
+                    while (matcher.find())
                     {
-                        System.out.println(id.get(i));
+                        Name.add(response.substring(matcher.start()+29,matcher.end()-2));
                     }
+                    for (int i = 0;i<Name.size();i++)
+                    {
+                        String x = "https://graph.facebook.com/"+id.get(i)+"/picture?width=100&height=100&access_token=EAAFjSJnETiYBAPtDl3banQFzam9xNl9Fb1eyKQqVBuWgn1kMuLaWDePSf4qschUXBrAADwCLUWg7OJVmk96ibN8oDT3Lurt4y0ZBq1QR9YdopXI4GBcvfAYi55t4LMiYl6lrJWM6eagKlQjTCIZCSQiDKHil0TZBKWBQ3tHv4epJIvPrGuO";
+                        Nick.add(new InforNick(id.get(i),Name.get(i),x,0));
+                    }
+                    loading.dismiss();
+                    recyclerView = (RecyclerView)findViewById(R.id.rvListFB);
+                    recyclerView.setHasFixedSize(true);
+                    LinearLayoutManager linearLayout = new LinearLayoutManager(NickFB.this);
+                    fbAdapter = new FBAdapter(Nick);
+                    recyclerView.setLayoutManager(linearLayout);
+                    recyclerView.setAdapter(fbAdapter);
                 }
             }
         }, new Response.ErrorListener() {
@@ -100,6 +124,6 @@ public class NickFB extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(NickFB.this);
         requestQueue.add(stringRequest);
-    }
 
+    }
 }
