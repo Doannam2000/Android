@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button Login,Registration,infor,cancel;
     EditText user,passw;
-    public static final String USER="";
+    public static final String USER="a";
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Thread.sleep(3000);
                         Intent intent = new Intent(MainActivity.this,Cookie.class);
-                        intent.putExtra(USER,user);
+                        intent.putExtra(USER,user.substring(0,1).toUpperCase()+user.substring(1));
                         loading.dismiss();
                         Toast.makeText(MainActivity.this,jsonObject.getString("msg"),Toast.LENGTH_LONG).show();
                         startActivity(intent);

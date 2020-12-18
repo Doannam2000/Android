@@ -3,6 +3,7 @@ package dn.doannam.acotien;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -31,11 +32,31 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InforNickHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final InforNickHolder holder, int position) {
         holder.tvName.setText("Name : "+inforNickList.get(position).getNickName());
         holder.tvID.setText("ID : "+inforNickList.get(position).getIdNick());
         Picasso.get().load(inforNickList.get(position).getImageId()).into(holder.imageView);
         holder.tvJob.setText("JOB : "+inforNickList.get(position).getJob());
+        holder.startJob.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if(isChecked==true)
+                {
+                    holder.cookieFB.setVisibility(View.GONE);
+                    holder.tvName.setTextSize(22);
+                    holder.tvID.setTextSize(22);
+                    holder.tvJob.setTextSize(22);
+                }
+                else
+                {
+                    holder.cookieFB.setVisibility(View.VISIBLE);
+                    holder.tvName.setTextSize(18);
+                    holder.tvID.setTextSize(18);
+                    holder.tvJob.setTextSize(18);
+                }
+            }
+        });
     }
 
     @Override

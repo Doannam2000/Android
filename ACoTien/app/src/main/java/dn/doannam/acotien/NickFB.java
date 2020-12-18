@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -42,6 +43,8 @@ public class NickFB extends AppCompatActivity {
     final public static List<InforNick> Nick = new ArrayList<>();
     private RecyclerView recyclerView;
     private FBAdapter fbAdapter;
+    TextView tvnickAuto,tvAllJob,tvsoDu,tvtienDuyet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,53 +56,96 @@ public class NickFB extends AppCompatActivity {
         loading.show();
         loading.setContentView(R.layout.process);
         loading.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
         final Intent intent = getIntent();
         final String Cookie = intent.getStringExtra(dn.doannam.acotien.Cookie.COOKIE);
-        String Url = "http://acotien.com/them-nick";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
+        final String User = intent.getStringExtra(dn.doannam.acotien.Cookie.User1);
+
+        tvtienDuyet = (TextView)findViewById(R.id.choDuyet) ;
+        tvsoDu = (TextView)findViewById(R.id.sodu);
+        tvAllJob = (TextView)findViewById(R.id.tongJob);
+        tvnickAuto = (TextView)findViewById(R.id.tenNickAuto);
+
+        tvnickAuto.setText("Auto \n"+User);
+
+        String Url = "http://acotien.com/home";
+        StringRequest request = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                } catch (JSONException e) {
-                    //ID Nick
-                    String hi = "datnick\\([0-9]{5,}";
-                    String nick =  "[0-9]{5,}";
-                    Pattern pattern = Pattern.compile(hi);
-                    Matcher matcher;
-                    matcher = pattern.matcher(response);
-                    while (matcher.find())
-                    {
-                        datnick.add(response.substring(matcher.start(),matcher.end()));
-                    }
-                    pattern = Pattern.compile(nick);
-                    for(int i =0;i<datnick.size();i++)
-                    {
-                        matcher = pattern.matcher(datnick.get(i));
-                        if (matcher.find())
-                            id.add(datnick.get(i).substring(matcher.start(),matcher.end()));
-                    }
-                    // Image
-                    String Nam = "b200 font-bold mb-1 font-16\">.*?.<";
-                    pattern = Pattern.compile(Nam);
-                    matcher = pattern.matcher(response);
-                    while (matcher.find())
-                    {
-                        Name.add(response.substring(matcher.start()+29,matcher.end()-2));
-                    }
-                    for (int i = 0;i<Name.size();i++)
-                    {
-                        String x = "https://graph.facebook.com/"+id.get(i)+"/picture?width=100&height=100&access_token=EAAFjSJnETiYBAPtDl3banQFzam9xNl9Fb1eyKQqVBuWgn1kMuLaWDePSf4qschUXBrAADwCLUWg7OJVmk96ibN8oDT3Lurt4y0ZBq1QR9YdopXI4GBcvfAYi55t4LMiYl6lrJWM6eagKlQjTCIZCSQiDKHil0TZBKWBQ3tHv4epJIvPrGuO";
-                        Nick.add(new InforNick(id.get(i),Name.get(i),x,0));
-                    }
-                    loading.dismiss();
-                    recyclerView = (RecyclerView)findViewById(R.id.rvListFB);
-                    recyclerView.setHasFixedSize(true);
-                    LinearLayoutManager linearLayout = new LinearLayoutManager(NickFB.this);
-                    fbAdapter = new FBAdapter(Nick);
-                    recyclerView.setLayoutManager(linearLayout);
-                    recyclerView.setAdapter(fbAdapter);
+                Pattern pattern =Pattern.compile("font-semi-bold current_coin.*?.<");
+                Matcher matcher =  pattern.matcher(response);
+                while (matcher.find())
+                {
+                    tvsoDu.setText("Số Dư : "+response.substring(matcher.start()+54,matcher.end()-1));
+                    break;
                 }
+                pattern = Pattern.compile("font-semi-bold pending_coin.*?.<");
+                matcher = pattern.matcher(response);
+                while (matcher.find())
+                {
+                    tvtienDuyet.setText("Chờ Duyệt : "+response.substring(matcher.start()+54,matcher.end()-1));
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(NickFB.this,"Bạn có lấy đúng cookie acotien chứ ?",Toast.LENGTH_LONG).show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("Cookie", Cookie);
+            return params;
+        }
+        };
+
+        RequestQueue requestQueue1 = Volley.newRequestQueue(NickFB.this);
+        requestQueue1.add(request);
+
+        Url = "http://acotien.com/them-nick";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response)
+            {
+                String hi = "datnick\\([0-9]{5,}";
+                String nick =  "[0-9]{5,}";
+                Pattern pattern = Pattern.compile(hi);
+                Matcher matcher;
+                matcher = pattern.matcher(response);
+                while (matcher.find())
+                {
+                    datnick.add(response.substring(matcher.start(),matcher.end()));
+                }
+                pattern = Pattern.compile(nick);
+                for(int i =0;i<datnick.size();i++)
+                {
+                    matcher = pattern.matcher(datnick.get(i));
+                    if (matcher.find())
+                        id.add(datnick.get(i).substring(matcher.start(),matcher.end()));
+                }
+                // Image
+                String Nam = "b200 font-bold mb-1 font-16\">.*?.<";
+                pattern = Pattern.compile(Nam);
+                matcher = pattern.matcher(response);
+                while (matcher.find())
+                {
+                    Name.add(response.substring(matcher.start()+29,matcher.end()-2));
+                }
+                final int Joball=0;
+                for (int i = 0;i<Name.size();i++)
+                {
+                    String x = "https://graph.facebook.com/"+id.get(i)+"/picture?width=100&height=100&access_token=EAAFjSJnETiYBAPtDl3banQFzam9xNl9Fb1eyKQqVBuWgn1kMuLaWDePSf4qschUXBrAADwCLUWg7OJVmk96ibN8oDT3Lurt4y0ZBq1QR9YdopXI4GBcvfAYi55t4LMiYl6lrJWM6eagKlQjTCIZCSQiDKHil0TZBKWBQ3tHv4epJIvPrGuO";
+                    Nick.add(new InforNick(id.get(i),Name.get(i),x,0));
+                }
+                loading.dismiss();
+                recyclerView = (RecyclerView)findViewById(R.id.rvListFB);
+                recyclerView.setHasFixedSize(true);
+                LinearLayoutManager linearLayout = new LinearLayoutManager(NickFB.this);
+                fbAdapter = new FBAdapter(Nick);
+                recyclerView.setLayoutManager(linearLayout);
+                recyclerView.setAdapter(fbAdapter);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -124,6 +170,5 @@ public class NickFB extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(NickFB.this);
         requestQueue.add(stringRequest);
-
     }
 }

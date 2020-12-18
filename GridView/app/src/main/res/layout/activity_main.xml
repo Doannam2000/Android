@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <GridView
+        android:id="@+id/gridview"
         android:layout_width="409dp"
         android:layout_height="729dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/gridview"
         android:numColumns="4"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

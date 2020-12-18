@@ -1,64 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="120dp"
     android:background="@drawable/drawimage"
+    android:orientation="horizontal"
     android:layout_margin="10dp">
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/anhDaiDien"
-        android:layout_margin="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:text="Name : "
-        android:textColor="#FF0000"
-        android:id="@+id/NameFB"
-        android:layout_toRightOf="@+id/anhDaiDien"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/idFB"
-        android:layout_marginLeft="5dp"
-        android:textColor="#0041FF"
-        android:text="ID : "
-        android:layout_toRightOf="@+id/anhDaiDien"
-        android:layout_marginTop="25dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="JOB : "
-        android:textColor="#FFAB00"
-        android:layout_marginLeft="100dp"
-        android:id="@+id/Job"
-        android:layout_toRightOf="@+id/idFB"
-        android:layout_marginTop="25dp"/>
+        android:layout_margin="10dp" />
 
-    <Switch
-        android:id="@+id/startAuto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/Job"
-        android:layout_marginLeft="40dp"/>
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="50dp"
-        android:id="@+id/cookieFB"
-        android:layout_toRightOf="@id/anhDaiDien"
-        android:layout_marginRight="10dp"
-        android:hint="Cookie"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:alpha="0.85"
-        android:textColor="#000000"
-        android:background="@drawable/drawcookie"
-        />
-</RelativeLayout>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="Name : "
+            android:textColor="#FF0000"
+            android:id="@+id/NameFB"
+            android:layout_toRightOf="@+id/anhDaiDien"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idFB"
+                android:layout_marginLeft="5dp"
+                android:textSize="18sp"
+                android:textColor="#0041FF"
+                android:text="ID : "
+                android:layout_toRightOf="@+id/anhDaiDien" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JOB : "
+                android:textColor="#EC2CF3"
+                android:textSize="18sp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/Job"
+                android:layout_toRightOf="@+id/idFB" />
+
+            <Switch
+                android:id="@+id/startAuto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/Job"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_height="55dp"
+            android:id="@+id/cookieFB"
+            android:layout_toRightOf="@id/anhDaiDien"
+            android:layout_marginRight="10dp"
+            android:hint="Cookie"
+            android:gravity="center"
+            android:alpha="0.85"
+            android:textColor="#000000"
+            android:background="@drawable/drawcookie" />
+    </LinearLayout>
+</LinearLayout>

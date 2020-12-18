@@ -16,9 +16,11 @@ public class Cookie extends AppCompatActivity {
 
     Button OK,guide;
     EditText cookie;
-    final public static String COOKIE="";
+    final public static String COOKIE="cookie";
+    final public static String User1 = "ten";
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cookie);
         ActionBar actionBar = getSupportActionBar();
@@ -29,7 +31,7 @@ public class Cookie extends AppCompatActivity {
         cookie =(EditText) findViewById(R.id.cookie);
         final Intent intent = getIntent();
         cookie.setHint("Nhập Cookie nick Acotien "+intent.getStringExtra(MainActivity.USER));
-
+        final String user = intent.getStringExtra(MainActivity.USER);
         guide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +43,7 @@ public class Cookie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Cookie.this,NickFB.class);
+                intent1.putExtra(User1,user);
                 intent1.putExtra(COOKIE,cookie.getText().toString());
                 startActivity(intent1);
             }
