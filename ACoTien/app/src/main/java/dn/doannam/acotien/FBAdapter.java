@@ -24,6 +24,7 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
     {
         this.inforNickList = inforNickList;
     }
+
     @NonNull
     @Override
     public InforNickHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,25 +33,45 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final InforNickHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final InforNickHolder holder, final int position) {
         holder.tvName.setText("Name : "+inforNickList.get(position).getNickName());
         holder.tvID.setText("ID : "+inforNickList.get(position).getIdNick());
         Picasso.get().load(inforNickList.get(position).getImageId()).into(holder.imageView);
         holder.tvJob.setText("JOB : "+inforNickList.get(position).getJob());
-        holder.startJob.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        if(inforNickList.get(position).isCheck()==true)
+        {
+            holder.startJob.setChecked(true);
+            holder.cookieFB.setVisibility(View.GONE);
+            holder.tvName.setTextSize(20);
+            holder.tvID.setTextSize(20);
+            holder.tvJob.setTextSize(20);
+        }
+        else
+        {
+            holder.cookieFB.setVisibility(View.VISIBLE);
+            holder.tvName.setTextSize(18);
+            holder.tvID.setTextSize(18);
+            holder.tvJob.setTextSize(18);
+            holder.startJob.setChecked(false);
+        }
+        holder.startJob.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
             {
                 if(isChecked==true)
                 {
                     holder.cookieFB.setVisibility(View.GONE);
-                    holder.tvName.setTextSize(22);
-                    holder.tvID.setTextSize(22);
-                    holder.tvJob.setTextSize(22);
+                    holder.tvName.setTextSize(20);
+                    holder.tvID.setTextSize(20);
+                    holder.tvJob.setTextSize(20);
+                    inforNickList.get(position).setCheck(true);
+                    inforNickList.get(position).setCookie(holder.cookieFB.getText().toString());
                 }
                 else
                 {
                     holder.cookieFB.setVisibility(View.VISIBLE);
+                    inforNickList.get(position).setCheck(false);
                     holder.tvName.setTextSize(18);
                     holder.tvID.setTextSize(18);
                     holder.tvJob.setTextSize(18);
@@ -77,6 +98,7 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
             tvName = itemView.findViewById(R.id.NameFB);
             startJob = itemView.findViewById(R.id.startAuto);
             cookieFB = itemView.findViewById(R.id.cookieFB);
+
         }
     }
 }
