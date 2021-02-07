@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Thông Báo Pin Đầy"

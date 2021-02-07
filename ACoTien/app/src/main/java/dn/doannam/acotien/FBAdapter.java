@@ -34,26 +34,6 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
 
     @Override
     public void onBindViewHolder(@NonNull final InforNickHolder holder, final int position) {
-        holder.tvName.setText("Name : "+inforNickList.get(position).getNickName());
-        holder.tvID.setText("ID : "+inforNickList.get(position).getIdNick());
-        Picasso.get().load(inforNickList.get(position).getImageId()).into(holder.imageView);
-        holder.tvJob.setText("JOB : "+inforNickList.get(position).getJob());
-        if(inforNickList.get(position).isCheck()==true)
-        {
-            holder.startJob.setChecked(true);
-            holder.cookieFB.setVisibility(View.GONE);
-            holder.tvName.setTextSize(20);
-            holder.tvID.setTextSize(20);
-            holder.tvJob.setTextSize(20);
-        }
-        else
-        {
-            holder.cookieFB.setVisibility(View.VISIBLE);
-            holder.tvName.setTextSize(18);
-            holder.tvID.setTextSize(18);
-            holder.tvJob.setTextSize(18);
-            holder.startJob.setChecked(false);
-        }
         holder.startJob.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
@@ -61,6 +41,16 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
             {
                 if(isChecked==true)
                 {
+                    holder.tvttCookie.setVisibility(View.VISIBLE);
+                    if (inforNickList.get(position).getCookie().equals("CookieDie")||inforNickList.get(position).getCookie().length()==0)
+                    {
+                        holder.tvttCookie.setText("COOKIE DIE");
+                        holder.tvttCookie.setTextColor(Integer.parseInt("#FF0000"));
+                    }
+                    else
+                    {
+                        holder.tvttCookie.setText("LIVE");
+                    }
                     holder.cookieFB.setVisibility(View.GONE);
                     holder.tvName.setTextSize(20);
                     holder.tvID.setTextSize(20);
@@ -78,6 +68,39 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
                 }
             }
         });
+        holder.tvName.setText("Name : "+inforNickList.get(position).getNickName());
+        holder.tvID.setText("ID : "+inforNickList.get(position).getIdNick());
+        Picasso.get().load(inforNickList.get(position).getImageId()).into(holder.imageView);
+        holder.tvJob.setText("JOB : "+inforNickList.get(position).getJob());
+        if(inforNickList.get(position).isCheck()==true)
+        {
+            holder.startJob.setChecked(true);
+            holder.cookieFB.setVisibility(View.GONE);
+            holder.tvName.setTextSize(20);
+            holder.tvID.setTextSize(20);
+            holder.tvJob.setTextSize(20);
+            holder.tvttCookie.setVisibility(View.VISIBLE);
+            if (inforNickList.get(position).getCookie().equals("CookieDie")||inforNickList.get(position).getCookie().length()==0)
+            {
+                holder.tvttCookie.setText("COOKIE DIE");
+                holder.tvttCookie.setTextColor(Integer.parseInt("#FF0000"));
+            }
+            else
+            {
+                holder.tvttCookie.setText("LIVE");
+            }
+        }
+        else
+        {
+            holder.cookieFB.setText(inforNickList.get(position).getCookie());
+            holder.cookieFB.setVisibility(View.VISIBLE);
+            holder.tvName.setTextSize(18);
+            holder.tvID.setTextSize(18);
+            holder.tvJob.setTextSize(18);
+            holder.startJob.setChecked(false);
+            holder.tvttCookie.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -87,7 +110,7 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
 
     public static class InforNickHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView tvName,tvJob,tvID;
+        public TextView tvName,tvJob,tvID,tvttCookie;
         public Switch startJob;
         public EditText cookieFB;
         public InforNickHolder(@NonNull View itemView) {
@@ -98,7 +121,7 @@ public class FBAdapter extends RecyclerView.Adapter<FBAdapter.InforNickHolder>  
             tvName = itemView.findViewById(R.id.NameFB);
             startJob = itemView.findViewById(R.id.startAuto);
             cookieFB = itemView.findViewById(R.id.cookieFB);
-
+            tvttCookie = itemView.findViewById(R.id.ttCookie);
         }
     }
 }

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         loading.setContentView(R.layout.process);
         loading.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        String url = "http://acotien.com/system/login";
+        String url = "https://www.acotien.com/system/login";
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

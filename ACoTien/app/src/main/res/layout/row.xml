@@ -6,6 +6,7 @@
     android:background="@drawable/drawimage"
     android:orientation="horizontal"
     android:layout_margin="10dp">
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -18,17 +19,26 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:text="Name : "
             android:textColor="#FF0000"
-            android:id="@+id/NameFB"
-            android:layout_toRightOf="@+id/anhDaiDien"/>
+            android:id="@+id/NameFB" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ttCookie"
+            android:layout_marginLeft="15dp"
+            android:textStyle="italic"
+            android:textSize="18sp"
+            android:textColor="#000DFF"/>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="center"

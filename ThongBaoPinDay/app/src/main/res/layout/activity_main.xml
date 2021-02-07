@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20"
+    android:background="#fff"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="THÔNG BÁO PIN ĐẦY"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#5A5FB8"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"/>
+    <LinearLayout
+        android:layout_weight="16"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đang Sạc"
+            android:gravity="center"
+            android:layout_margin="25dp"
+            android:id="@+id/trangThai"
+            android:textColor="#3F3BB1"
+            android:textSize="30sp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/anh"
+            android:layout_margin="20dp"
+            android:src="@drawable/b0"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:id="@+id/tSoPin"
+            android:text="1%"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="#1A5E25"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="CÀI ĐẶT"
+                android:id="@+id/caiDat"/>
+            <Button
+                android:layout_margin="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hẹn giờ"
+                android:id="@+id/henGio"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="#CF3636"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:id="@+id/pinCaiDat" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#5A5FB8"/>
+
+</LinearLayout>

@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,12 +51,12 @@ public class NickFB extends AppCompatActivity {
     List<String> Name = new ArrayList<>();
     List<InforNick> Nick = new ArrayList<>();
     String re;
-    final ArrayList<TypeJob> arrayList = new ArrayList<>();
     private RecyclerView recyclerView;
     private FBAdapter fbAdapter;
     TextView tvnickAuto,tvAllJob,tvsoDu,tvtienDuyet;
     Button start;
-
+    final TypeJob typeJob = new TypeJob();
+    EditText timeDelay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +79,9 @@ public class NickFB extends AppCompatActivity {
         tvnickAuto = (TextView)findViewById(R.id.tenNickAuto);
         start = (Button)findViewById(R.id.btnstart);
         tvnickAuto.setText("Auto \n"+User);
+        timeDelay = (EditText) findViewById(R.id.timeDelay);
 
-        String Url = "http://acotien.com/home";
+        String Url = "https://www.acotien.com/home";
         StringRequest request = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -87,14 +89,15 @@ public class NickFB extends AppCompatActivity {
                 Matcher matcher =  pattern.matcher(response);
                 while (matcher.find())
                 {
-                    tvsoDu.setText("Số Dư : "+response.substring(matcher.start()+54,matcher.end()-1));
+                    tvsoDu.setText("Số Dư : "+response.substring(matcher.start() + 54,matcher.end()-1));
                     break;
                 }
                 pattern = Pattern.compile("font-semi-bold pending_coin.*?.<");
                 matcher = pattern.matcher(response);
                 while (matcher.find())
                 {
-                    tvtienDuyet.setText("Chờ Duyệt : "+response.substring(matcher.start()+54,matcher.end()-1));
+                    tvtienDuyet.setText("Chờ Duyệt : "+response.substring(matcher.start() + 54,matcher.end()-1));
+                    break;
                 }
             }
         }, new Response.ErrorListener() {
@@ -115,7 +118,7 @@ public class NickFB extends AppCompatActivity {
         RequestQueue requestQueue1 = Volley.newRequestQueue(NickFB.this);
         requestQueue1.add(request);
 
-        Url = "http://acotien.com/them-nick";
+        Url = "https://www.acotien.com/them-nick";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
@@ -137,7 +140,7 @@ public class NickFB extends AppCompatActivity {
                         id.add(datnick.get(i).substring(matcher.start(),matcher.end()));
                 }
                 // Image
-                String Nam = "b200 font-bold mb-1 font-16\">.*?.<";
+                String Nam = "b300 font-bold mb-1 font-16\">.*?.<";
                 pattern = Pattern.compile(Nam);
                 matcher = pattern.matcher(response);
                 while (matcher.find())
@@ -189,6 +192,8 @@ public class NickFB extends AppCompatActivity {
             public void onClick(View v) {
                 if(start.getText().toString().equals("START"))
                 {
+                    timeDelay.setVisibility(View.GONE);
+                    tvAllJob.setVisibility(View.VISIBLE);
                     int c = 0;
                     for (int i =0;i<Nick.size();i++)
                     {
@@ -204,28 +209,32 @@ public class NickFB extends AppCompatActivity {
                         {
                             Nick.get(i).setCheck(true);
                         }
-                        ArrayList<TypeJob> arrayList1 = new ArrayList<>();
-                        arrayList1  = ReturnIDJob("http://acotien.com/like-cheo",Cookie);
-                        for (int j = 0;j<arrayList1.size();j++)
+                        TypeJob typeJob = new TypeJob();
+                        typeJob  = ReturnIDJob("https://www.acotien.com/kiem-tien",Cookie);
+                        if(typeJob.idJob == "")
                         {
-                            System.out.println(arrayList1.get(j).getIdJob()+" "+arrayList1.get(j).getTypeJob());
+                            typeJob  = ReturnIDJob("https://www.acotien.com/kiem-tien",Cookie);
                         }
+                        System.out.println(typeJob.getIdJob()+" "+typeJob.getTypeJob());
                     }
                     else
                     {
                         //START AUTO
-                        ArrayList<TypeJob> arrayList1 = new ArrayList<>();
-                        arrayList1  = ReturnIDJob("http://acotien.com/like-cheo",Cookie);
-                        for (int j = 0;j<arrayList1.size();j++)
+                        TypeJob typeJob = new TypeJob();
+                        typeJob  = ReturnIDJob("https://www.acotien.com/kiem-tien",Cookie);
+                        if(typeJob.idJob == "")
                         {
-                            System.out.println(arrayList1.get(j).getIdJob()+" "+arrayList1.get(j).getTypeJob());
+                            typeJob  = ReturnIDJob("https://www.acotien.com/kiem-tien",Cookie);
                         }
+                        System.out.println(typeJob.getIdJob()+" "+typeJob.getTypeJob());
                     }
                     start.setText("STOP");
                     start.setBackgroundResource(drawstop);
                 }
                 else
                 {
+                    timeDelay.setVisibility(View.VISIBLE);
+                    tvAllJob.setVisibility(View.GONE);
                     for (int i =0;i<Nick.size();i++)
                     {
                         Nick.get(i).setCheck(false);
@@ -239,36 +248,41 @@ public class NickFB extends AppCompatActivity {
             }
         });
     }
-
-    public ArrayList<TypeJob> ReturnIDJob(String url,final String Cookie)
+    public TypeJob ReturnIDJob(String url,final String Cookie)
     {
-        final ArrayList<String> idJob = new ArrayList<>();
-        final ArrayList<String> typejob = new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
             {
+                Toast.makeText(NickFB.this,re,Toast.LENGTH_SHORT).show();
                 String reg = "like\\('[0-9]{5,}";
                 Pattern pattern = Pattern.compile(reg);
                 Matcher matcher = pattern.matcher(response);
+                String m = typeJob.idJob;
                 while (matcher.find())
                 {
-                    idJob.add(response.substring(matcher.start()+6,matcher.end()));
+                    typeJob.idJob = response.substring(matcher.start()+6,matcher.end());
+                }
+                if(typeJob.idJob.equals(m))
+                {
+                    String regg = "follow\\('[0-9]{5,}";
+                    Pattern patternn = Pattern.compile(regg);
+                    Matcher matchern = patternn.matcher(response);
+                    while (matchern.find())
+                    {
+                        typeJob.idJob = response.substring(matchern.start()+8,matchern.end());
+                    }
                 }
                 reg = "font-14 block-text-2.*?.<";
                 pattern = Pattern.compile(reg);
                 matcher = pattern.matcher(response);
                 while (matcher.find())
                 {
-                    typejob.add(response.substring(matcher.start()+22,matcher.end()-1));
-                }
-                for (int i = 0;i<idJob.size();i++)
-                {
-                    arrayList.add(new TypeJob(idJob.get(i),typejob.get(i)));
-                }
-                for (int i = 0;i<arrayList.size();i++)
-                {
-                    System.out.println(arrayList.get(i).getIdJob()+" hi  "+arrayList.get(i).getTypeJob());
+                    typeJob.typeJob = response.substring(matcher.start()+22,matcher.end()-1);
+                    if(typeJob.typeJob.equals("Thực hiện "))
+                    {
+                        typeJob.typeJob  = response.substring(matcher.start()+58,matcher.end()+35);
+                    }
                 }
             }
         },
@@ -288,8 +302,7 @@ public class NickFB extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(NickFB.this);
         requestQueue.add(stringRequest);
-        Toast.makeText(NickFB.this,re,Toast.LENGTH_SHORT).show();
-        return arrayList;
+        return typeJob;
     }
 
     public class TypeJob
@@ -300,6 +313,10 @@ public class NickFB extends AppCompatActivity {
         public TypeJob(String idJob, String typeJob) {
             this.idJob = idJob;
             this.typeJob = typeJob;
+        }
+
+        public TypeJob() {
+
         }
 
         public String getIdJob() {
